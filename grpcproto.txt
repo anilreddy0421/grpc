@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_package = "com.grpc.employee.generated";
+option java_outer_classname = "EmployeeProto";
+option java_multiple_files = true;
+
+package employee;
+
+// ─── Request Messages ───────────────────────────────────────
+
+message GetEmployeeRequest {
+  string employee_id = 1;
+}
+
+message ListEmployeesRequest {
+  string department = 1;
+}
+
+// ─── Response Message ───────────────────────────────────────
+
+message Employee {
+  string id         = 1;
+  string name       = 2;
+  string department = 3;
+  string email      = 4;
+  double salary     = 5;
+}
+
+message GetEmployeeResponse {
+  Employee employee = 1;
+}
+
+// ─── Service Definition ─────────────────────────────────────
+
+service EmployeeService {
+
+  // Returns a single employee by ID
+  rpc GetEmployee (GetEmployeeRequest) returns (GetEmployeeResponse);
+
+  // Streams a list of employees by department
+  rpc ListEmployees (ListEmployeesRequest) returns (stream Employee);
+}
