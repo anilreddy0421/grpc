@@ -1,0 +1,21 @@
+<!-- Builds a thin stub-only JAR for Talend -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.3.0</version>
+    <executions>
+        <execution>
+            <id>stub-jar</id>
+            <phase>package</phase>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+            <configuration>
+                <classifier>stubs</classifier>
+                <includes>
+                    <include>com/grpc/employee/generated/**</include>
+                </includes>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
